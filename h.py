@@ -1,38 +1,38 @@
 infinity = 1.0e400
 
 
+def memoize(f):
+    memo = {}
+
+    def helper(x):
+        if x not in memo:
+            memo[x] = f(x)
+        return memo[x]
+
+    return helper
+
+
+@memoize
 def hX(state):
-    h = 0
-    lista1 = []
-    lista2 = []
-    if state.utility > 0:
-        return infinity
-    elif state.utility == 0:
-        for pos in state.board:
-            valor = 1
-            if state.board[pos] == 'X':
-                lista1.append(pos)
-                if buscar(lista1, pos):
-                    h += valor
-            else:
-                lista2.append(pos)
-                if buscar(lista2, pos):
-                    h -= valor
-        return h
-    else:
-        return -infinity
+    return h(state, "X")
 
-
+@memoize
 def hO(state):
+    return h(state, "O")
+
+def h(state,player):
     h = 0
     lista1 = []
     lista2 = []
-    if state.utility < 0:
-        return infinity
-    elif state.utility == 0:
+    if state.utility != 0:
+        if player == "X":
+            return infinity*state.utility
+        else:
+            return -infinity*state.utility
+    else:
         for pos in state.board:
             valor = 1
-            if state.board[pos] == 'O':
+            if state.board[pos] == player:
                 lista1.append(pos)
                 if buscar(lista1, pos):
                     h += valor
@@ -41,8 +41,6 @@ def hO(state):
                 if buscar(lista2, pos):
                     h -= valor
         return h
-    else:
-        return -infinity
 
 
 def buscar(list, ind):

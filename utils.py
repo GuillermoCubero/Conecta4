@@ -251,6 +251,9 @@ class Struct:
         else:
             return cmp(self.__dict__, other)
 
+    def __hash__(self):
+        return hash(self.to_move) + hash(tuple(self.board.items()))
+
     def __repr__(self):
         args = ['%s=%s' % (k, repr(v)) for (k, v) in vars(self).items()]
         return 'Struct(%s)' % ', '.join(args)
