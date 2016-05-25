@@ -16,49 +16,51 @@ def memoize(f):
 def hX(state):
     return h(state, "X")
 
+
 @memoize
 def hO(state):
     return h(state, "O")
 
-def h(state,player):
-    h = 0
+
+def h(state, player):
+    valorH = 1
     lista1 = []
     lista2 = []
     if state.utility != 0:
         if player == "X":
-            return infinity*state.utility
+            return infinity * state.utility
         else:
-            return -infinity*state.utility
+            return -infinity * state.utility
     else:
         for pos in state.board:
             valor = 1
             if state.board[pos] == player:
                 lista1.append(pos)
                 if buscar(lista1, pos):
-                    h += valor
+                    valorH += valor
             else:
                 lista2.append(pos)
                 if buscar(lista2, pos):
-                    h -= valor
-        return h
+                    valorH -= valor
+        return valorH
 
 
-def buscar(list, ind):
+def buscar(lista, ind):
     indInf = (ind[0] - 1, ind[1])
     indInfIzq = (ind[0] - 1, ind[1] - 1)
     indIzq = (ind[0], ind[1] - 1)
     indSupIzq = (ind[0] + 1, ind[1] - 1)
-    if indInf in list:
-        list.remove(indInf)
+    if indInf in lista:
+        lista.remove(indInf)
         return True
-    elif indInfIzq in list:
-        list.remove(indInfIzq)
+    elif indInfIzq in lista:
+        lista.remove(indInfIzq)
         return True
-    elif indIzq in list:
-        list.remove(indIzq)
+    elif indIzq in lista:
+        lista.remove(indIzq)
         return True
-    elif indSupIzq in list:
-        list.remove(indSupIzq)
+    elif indSupIzq in lista:
+        lista.remove(indSupIzq)
         return True
     else:
         return False

@@ -1,6 +1,7 @@
 import games
 import h
 import os
+import hadri
 
 
 # Funcion encargada de pedir y configurar la dificultad del juego
@@ -14,7 +15,7 @@ def pedirNivel():
     elif level == 2:
         return h.hX, 4
     else:
-        return h.hX, 5
+        return hadri.heuristicaBuena, 4
 # Fin funcion ---------------------------------------------------
 # Funcion encargada de pedir y configurar el modo del juego
 def pedirModo():
