@@ -24,8 +24,8 @@ def hO(state):
 
 def h(state, player):
     valorH = 1
-    lista1 = []
-    lista2 = []
+    listaJugador = []
+    listaOponente = []
     if state.utility != 0:
         if player == "X":
             return infinity * state.utility
@@ -35,12 +35,12 @@ def h(state, player):
         for pos in state.board:
             valor = 1
             if state.board[pos] == player:
-                lista1.append(pos)
-                if buscar(lista1, pos):
+                listaJugador.append(pos)
+                if buscar(listaJugador, pos):
                     valorH += valor
             else:
-                lista2.append(pos)
-                if buscar(lista2, pos):
+                listaOponente.append(pos)
+                if buscar(listaOponente, pos):
                     valorH -= valor
         return valorH
 

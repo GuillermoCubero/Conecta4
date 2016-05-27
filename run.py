@@ -1,8 +1,8 @@
 import games
 import h
 import os
+import h2
 import hadri
-
 
 # Funcion encargada de pedir y configurar la dificultad del juego
 def pedirNivel():
@@ -13,9 +13,9 @@ def pedirNivel():
     if level == 1:
         return None, 3
     elif level == 2:
-        return h.hX, 4
+        return h.hX, 5
     else:
-        return hadri.heuristicaBuena, 4
+        return h2.hX, 5
 # Fin funcion ---------------------------------------------------
 # Funcion encargada de pedir y configurar el modo del juego
 def pedirModo():
@@ -43,7 +43,7 @@ def humano():
 # Jugador maquina
 def maquina():
     print "Thinking..."
-    return games.alphabeta_search(state, game, eval_fn=h.hO, d=5)
+    return games.alphabeta_search(state, game, eval_fn=h2.hO, d=5)
 # Fin funcion ---------------------------------------------------
 # Pedir primer Jugador
 def pedirPlayer():
@@ -73,10 +73,12 @@ while True:
     # print "------------------------------------------"
     if game.terminal_test(state):
         print "----------------------------------------"
-        if player == 'O':
+        print "Final de la partida"
+        if len(state.moves)== 0:
+            print "EMPATE"
+        elif player == 'O':
             print "Jugador Ganador: X"
         else:
             print "Jugador Ganador: O"
         game.display(state)
-        print "Final de la partida"
         break
