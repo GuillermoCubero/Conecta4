@@ -2,7 +2,6 @@ import games
 import h
 import os
 import h2
-import hadri
 
 # Funcion encargada de pedir y configurar la dificultad del juego
 def pedirNivel():
