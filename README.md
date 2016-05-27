@@ -32,6 +32,6 @@ Para ello se han modificado los siguientes ficheros:
 
 ## h2.py
 
-1. Prácticamente igual solo que al encontrar una ficha contigua con otro continua para saber si son mas de 2 juntas.
+1. Prácticamente igual solo que al encontrar una ficha contigua con otra, continua para saber si son mas de 2 juntas.
 2. `buscar(lista,pos)` se ha convertido en un metodo que llama 4 veces a `buscar(lista,pos,dir1,dir2)` que se encarga de comprobar si hay parejas, trios o mas, dandole un valor según lo que sea.
 3. En la anterior version se elimiaba siempre al que se encontraba en esta version ya no se hace.
